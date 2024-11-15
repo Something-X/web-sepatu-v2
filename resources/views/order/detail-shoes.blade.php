@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="flex space-x-4 mb-6">
-                            <button class="overflow-hidden relative w-[350px] mt-5 p-2 h-12 bg-white text-black border-2 border-green-700 rounded-md text-base font-semibold cursor-pointer z-10 group hover:border-green-600">Kirim Bukti Pembayaran
+                            <button class="overflow-hidden relative w-[350px] mt-5 p-2 h-12 bg-white text-black border-2 border-green-700 rounded-md text-base font-semibold cursor-pointer z-10 group hover:border-green-600">Tambahkan ke keranjang
                                 <span class="absolute w-[380px] h-32 -top-8 -left-2 bg-green-200 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-left"></span>
                                 <span class="absolute w-[380px] h-32 -top-8 -left-2 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-left">
                                 </span>

@@ -36,7 +36,7 @@
 
                 <div class="relative -top-[4px] lg:top-1">
                     <a href="{{ route('view.cart') }}">
-                        <span class="text-xs text-[0.50rem] text-center font-semibold text-white absolute top-[2px] lg:-top-2 -right-2 w-3 h-3 lg:w-4 lg:h-4 bg-green-900 rounded-full">1{{ session('count_cart') }}</span>
+                        <span class="text-xs text-[0.50rem] text-center font-semibold text-white absolute top-[2px] lg:-top-2 -right-2 w-3 h-3 lg:w-4 lg:h-4 bg-green-900 rounded-full">{{ session('count_cart') }}</span>
                         <i class="bi bi-cart4 text-green-900 text-2xl lg:text-4xl"></i>
                     </a>
                 </div>  
