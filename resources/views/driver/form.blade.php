@@ -1,8 +1,15 @@
 @extends('layouts-backend/index')
 
 @section('backend-title', 'Admin | Tambah Akun Driver')
-@section('breadcumb-role', 'Admin')
+@push('breadcumb-role')
+    {{ auth()->user()->role }}
+@endpush
+
 @section('breadcumb-title', 'Kelola Driver')
+@push('breadcumb-backend-role')
+    <i class="fi-br-admin w-6 h-6 text-xl"></i>
+@endpush
+
 @push('breadcumb-sub-title')
     <svg class = "w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
@@ -23,7 +30,7 @@
                         <div class="grid max-w-2xl mx-auto mt-8">
                             <div class="mx-auto w-64 text-center">
                                 <div class="relative w-64 h-64 cursor-pointer" onclick="document.getElementById('avatar').click();">
-                                    <img id="preview-img" class="w-64 h-64 rounded-full object-cover shadow-2xl" src="{{ asset('uploads/avatar/empty-avatar.png') }}" alt="Foto Profil Driver" />
+                                    <img id="preview-img" class="w-64 h-64 rounded-full object-cover shadow-2xl" src="{{ asset('uploads/avatar/empty-avatar.webp') }}" alt="Foto Profil Driver" />
                                     <div class="w-64 h-64 group hover:bg-gray-200 opacity-60 rounded-full absolute top-0 left-0 flex justify-center items-center transition duration-500">
                                         <i class="bi bi-upload hidden group-hover:block w-12 text-4xl"></i>
                                     </div>
@@ -92,8 +99,8 @@
                                     </div>
 
                                 </div>
-                                <hr class="mt-8 border-gray-300 dark:border-gray-700">
-                                <button class="w-full mt-8 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-[#1E293B] text-white hover:rounded-3xl duration-300 focus:outline-none focus:bg-[#1E293B] disabled:opacity-50 disabled:pointer-events-none">Tambah</button>
+                                <hr class="mt-8 mb-8 border-gray-300 dark:border-gray-700">
+                                <button class="w-full py-3 px-4 transition-all duration-300 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-3xl border border-transparent bg-[#1E293B] text-white hover:shadow-md hover:shadow-slate-600 focus:outline-none focus:bg-[#1E293B] disabled:opacity-50 disabled:pointer-events-none">Tambah</button>
                             </div>
                         </div>
                     </form>

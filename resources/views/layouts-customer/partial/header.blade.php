@@ -11,19 +11,21 @@
                 </a>
             </div>
         </div>
-        <div class="gap-4 bg-gray-100 shadow-md flex sm:flex-row w-full md:items-center justify-between p-6 md:px-24">
-            <h1 class="font-semibold 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-xl text-gray-600">ShoeCycle</h1>
-            <form class="relative w-full sm:w-3/5">
+        
+        <!-- Navbar -->
+        <div class="bg-gray-100 shadow-md flex flex-row items-center justify-between w-full p-6 md:px-24">
+            <!-- Logo -->
+            <h1 class="font-semibold text-sm sm:text-4xl text-gray-600">ShoeCycle</h1>
+
+            <form class="hidden lg:block -ml-24 justify-center flex-grow">
                 <div class="desktopNavbar">
-                    <nav class="my-4 hidden z-0 lg:flex justify-center">
-                        <ul class="desktopNavbarUl flex justify-center items-center gap-12 font-sm font-bold text-gray-600">
-                            <li class="nav_items relative">
-                                <a href="{{ route('order.view') }}">BELI SEPATU</a>
-                                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-900  transition-all ease-in-out"></span>
+                    <nav class="flex-grow flex justify-center">
+                        <ul class="flex gap-12 font-bold text-gray-600">
+                            <li class="nav_items">
+                                <a href="{{ route('order.view') }}" class="hover:underline">BELI SEPATU</a>
                             </li>
-                            <li class="nav_items relative">
-                                <a href="{{ route('transaction-customer.index') }}">RIWAYAT TRANSAKSI</a>
-                                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-900  transition-all ease-in-out"></span>
+                            <li class="nav_items">
+                                <a href="{{ route('transaction-customer.index') }}" class="hover:underline">RIWAYAT TRANSAKSI</a>
                             </li>
                         </ul>
                     </nav>
@@ -32,42 +34,45 @@
                     <i class="fa-solid fa-magnifying-glass cursor-pointer"></i>
                 </label>
             </form>
-            <div class="icons mr-2 text-3xl flex gap-5 md:gap-8 text-gray-600">
-
-                <div class="relative -top-[4px] lg:top-1">
-                    <a href="{{ route('view.cart') }}">
-                        <span class="text-xs text-[0.50rem] text-center font-semibold text-white absolute top-[2px] lg:-top-2 -right-2 w-3 h-3 lg:w-4 lg:h-4 bg-green-900 rounded-full">{{ session('count_cart') }}</span>
-                        <i class="bi bi-cart4 text-green-900 text-2xl lg:text-4xl"></i>
-                    </a>
-                </div>  
-                
+            
+            <!-- Avatar & Keranjang -->
+            <div class="flex items-center gap-4 ml-auto">
+                <!-- Avatar -->
                 <div class="relative">
-                    <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="mr-8 h-8 w-8 lg:w-11 lg:h-11 rounded-full cursor-pointer" src="{{ asset('uploads/avatar/' . Auth::user()->avatar) }}" alt="User dropdown" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
-
+                    @if (empty(Auth::user()->avatar))
+                        <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-8 h-8 md:w-10 md:h-10 rounded-full cursor-pointer" src="{{ asset('uploads/avatar/empty-avatar.webp') }}" alt="User dropdown" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);">
+                    @else
+                        <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-8 h-8 md:w-10 md:h-10 rounded-full cursor-pointer" src="{{ asset('uploads/avatar/' . Auth::user()->avatar) }}" alt="User dropdown" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);">
+                    @endif
 
                     <!-- Dropdown menu -->
-                    <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                        <div class="px-4 py-3 text-xs md:text-sm text-gray-900 dark:text-white">
-                            <div>Hai, {{ Auth::user()->name }} !</div>
+                    <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-full mt-2 right-0">
+                        <div class="px-4 py-1 sm:py-3 text-xs sm:text-sm text-gray-900 dark:text-white">
+                            <div>Hai, {{ Auth::user()->name }}!</div>
                             <div class="font-medium truncate">{{ Auth::user()->email }}</div>
                         </div>
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                        <ul class="py-1 sm:py-2 text-xs sm:text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
                             <li>
-                                <a href="{{ route('complete.profile') }}" class="text-xs md:text-sm block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pengaturan Akun</a>
+                                <a href="{{ route('complete.profile') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pengaturan Akun</a>
                             </li>
                         </ul>
                         <div class="py-1">
-                            <a href="{{ route('auth.logout') }}" class="block px-4 py-2 text-xs md:text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                            <a href="{{ route('auth.logout') }}" class="block px-4 py-1 sm:py-2 text-xs sm:text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                 <i class="bi bi-box-arrow-in-right text-green-900"></i> Keluar</a>
                         </div>
                     </div>
                 </div>
+
+                <!-- Keranjang -->
+                <div class="relative">
+                    <a href="{{ route('view.cart') }}">
+                        <span class="text-[0.5rem] md:text-xs text-center font-semibold text-white absolute top-0 left-5 md:left-7 w-2 md:w-3 h-2 md:h-3 bg-green-900 rounded-full">{{ session('count_cart') }}</span>
+                        <i class="bi bi-cart4 text-green-900 text-xl md:text-3xl"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-    {{-- Tampilan Header --}}
-
-    {{-- Tampilan Mobile --}}
-    @include('layouts-customer/partial/mobile-navbar')
-    <!--? Navbar -->
+<!-- Tampilan Mobile Navbar -->
+@include('layouts-customer/partial/mobile-navbar')
 </header>

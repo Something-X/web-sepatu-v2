@@ -5,19 +5,16 @@
 @section('content-frontend')
     <div class="container mx-auto px-4 py-8">
         <div class="flex flex-wrap -mx-4">
-            <!-- Product Images -->
             <div class="w-full md:w-1/2 px-4 mb-8 relative">
                 <img src="{{ asset($shoes->imagedetail[0]->image) }}" alt="Product" id="mainImage" class="w-[700px] h-[500px] rounded-lg shadow-md mb-4 opacity-100 transition-opacity duration-500 ease-in-out">
-                
+
                 <div class="flex gap-4 py-4 justify-center overflow-x-auto">
                     @foreach ($shoes->imagedetail as $index => $see)
                         <img src="{{ asset($see->image) }}" alt="Thumbnail 1" class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300" onclick="changeImage('{{ asset($see->image) }}', {{ $index }})">
                     @endforeach
                 </div>
             </div>
-            
 
-            <!-- Product Details -->
             <div class="w-full md:w-1/2 px-4">
                 <form action="{{ route('add.cart', $shoes->id) }}" method="POST" class="bg-white shadow-xl rounded-lg p-6">
                     @csrf
@@ -40,7 +37,6 @@
                         </div>
                     </div>
 
-                    <!-- Add to Cart and Quantity Selector -->
                     <div class="mb-6">
                         <div class="max-w-xs mb-6">
                             <div class="relative flex items-center">
@@ -61,7 +57,7 @@
                         </div>
 
                         <div class="flex space-x-4 mb-6">
-                            <button class="overflow-hidden relative w-[350px] mt-5 p-2 h-12 bg-white text-black border-2 border-green-700 rounded-md text-base font-semibold cursor-pointer z-10 group hover:border-green-600">Tambahkan ke keranjang
+                            <button class="overflow-hidden relative w-[350px] mt-5 p-2 h-12 bg-white text-black border-2 border-green-700 rounded-3xl text-base font-semibold cursor-pointer z-10 group hover:border-green-600">Masukkan ke Keranjang
                                 <span class="absolute w-[380px] h-32 -top-8 -left-2 bg-green-200 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-left"></span>
                                 <span class="absolute w-[380px] h-32 -top-8 -left-2 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-left">
                                 </span>
@@ -70,7 +66,7 @@
                                 <span class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-40 z-10">
                                     <i class="fi-br-shopping-cart-add text-xl text-white"></i>
                                 </span>
-                              </button>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -84,60 +80,60 @@
                 document.getElementById('mainImage').src = src;
             }
             //  script tambah kurang jumlah barang 
-             const decrementButton = document.getElementById('decrement-button');
-             const incrementButton = document.getElementById('increment-button');
-             const quantityInput = document.getElementById('quantity-input');
+            const decrementButton = document.getElementById('decrement-button');
+            const incrementButton = document.getElementById('increment-button');
+            const quantityInput = document.getElementById('quantity-input');
 
-             const minQty = parseInt(quantityInput.min);
-             const maxQty = parseInt(quantityInput.max);
+            const minQty = parseInt(quantityInput.min);
+            const maxQty = parseInt(quantityInput.max);
 
             decrementButton.addEventListener('click', () => {
-            let currentValue = parseInt(quantityInput.value);
-            if (currentValue > minQty) {
-            quantityInput.value = currentValue - 1;
-            }
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > minQty) {
+                    quantityInput.value = currentValue - 1;
+                }
             });
 
             incrementButton.addEventListener('click', () => {
-            let currentValue = parseInt(quantityInput.value);
-            if (currentValue < maxQty) {
-            quantityInput.value = currentValue + 1;
-            }
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue < maxQty) {
+                    quantityInput.value = currentValue + 1;
+                }
             });
             // end 
 
             // animasi ganti gambar produk 
-            let currentIndex = 0; 
-            const images = @json($shoes->imagedetail); 
+            let currentIndex = 0;
+            const images = @json($shoes->imagedetail);
             const mainImage = document.getElementById("mainImage");
 
             function changeImage(src, index) {
-           
-            if (index !== undefined) {
-            currentIndex = index;
-            } else {
-            currentIndex = images.findIndex(image => image.image === src);
-            }
 
-            mainImage.classList.remove("opacity-100"); 
-            mainImage.classList.add("opacity-0");
-    
-           setTimeout(() => {
-           mainImage.src = src; 
-           mainImage.classList.remove("opacity-0"); 
-           mainImage.classList.add("opacity-100"); 
-           }, 200); 
-           }
-        //    end 
+                if (index !== undefined) {
+                    currentIndex = index;
+                } else {
+                    currentIndex = images.findIndex(image => image.image === src);
+                }
+
+                mainImage.classList.remove("opacity-100");
+                mainImage.classList.add("opacity-0");
+
+                setTimeout(() => {
+                    mainImage.src = src;
+                    mainImage.classList.remove("opacity-0");
+                    mainImage.classList.add("opacity-100");
+                }, 200);
+            }
+            //    end 
         </script>
 
         {{-- hilangkan tombol atas bawah pada input jumlah barang yang akan di pesan  --}}
         <style>
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-        }
+            input[type="number"]::-webkit-outer-spin-button,
+            input[type="number"]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
         </style>
     </div>
 @endsection

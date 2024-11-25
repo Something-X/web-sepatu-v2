@@ -9,17 +9,18 @@ export default {
     theme: {
         extend: {
             animation: {
-                fadeIn: 'fadeIn 0.5s ease-in-out',
-                fadeOut: 'fadeOut 0.5s ease-in-out',
+                move: "move 0.4s ease-in-out", // Menambahkan animasi move yang kustom
               },
               keyframes: {
-                fadeIn: {
-                  '0%': { opacity: 0 },
-                  '100%': { opacity: 1 },
-                },
-                fadeOut: {
-                  '0%': { opacity: 1 },
-                  '100%': { opacity: 0 },
+                move: {
+                  "0%, 49.99%": {
+                    opacity: "0",
+                    zIndex: "1",
+                  },
+                  "50%, 100%": {
+                    opacity: "1",
+                    zIndex: "5",
+                  },
                 },
               },
         },
@@ -28,5 +29,7 @@ export default {
         require("flowbite/plugin")({
             datatables: true,
         }),
+
+        require('tailwindcss-motion')
     ],
 };

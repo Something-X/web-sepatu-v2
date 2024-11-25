@@ -1,4 +1,4 @@
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-4 max-w-full mx-40 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 px-4 max-w-full mx-40 mt-20">
     <div class="bg-white rounded-lg shadow-lg p-4">
         <div class="relative overflow-hidden">
             <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="Product">

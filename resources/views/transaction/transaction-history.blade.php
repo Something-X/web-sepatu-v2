@@ -1,6 +1,7 @@
 @extends('layouts-customer.index')
 @section('title-frontend', 'ShoeCycle | Riwayat Transaksi')
 @section('content-frontend')
+
     <div class="shadow-lg rounded-lg overflow-x-auto mb-80 mx-4 md:mx-10 mt-10 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-28">
         <h1 class="text-center mb-5 font-bold uppercase text-sm md:text-xl lg:text-2xl">Riwayat Transaksi yang Anda Lakukan</h1>
         <table class="min-w-full divide-y divide-gray-200">
@@ -17,7 +18,6 @@
                     <th class="hidden xl:table-cell w-2/12 md:w-1/6 py-1 px-1 text-center text-gray-600 font-bold md:py-4 md:px-3 uppercase">Status Pengiriman</th>
                 </tr>
             </thead>
-            
             <tbody class="bg-white">
                 @foreach ($transaction as $see)
                     <tr>

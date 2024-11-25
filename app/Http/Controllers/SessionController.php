@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class SessionController extends Controller
 {
@@ -36,16 +37,26 @@ class SessionController extends Controller
 
             $user = Auth::user();
 
+            $message = [
+                "type-message" => "success",
+                "message" => "Selamat Datang, <b>$user->name</b>"
+            ];
+
             // Logika login multi role
             if ($user->role === 'admin') {
-                return redirect()->intended('dashboard');
+                return redirect()->intended('dashboard')->with($message);
             } else if ($user->role === 'customer') {
-                return redirect()->intended('order');
+                return redirect()->intended('order')->with($message);
             } else if ($user->role === 'driver') {
-                return redirect()->intended('ordershoes');
-            } else {
-                return redirect()->route('login.view');
+                return redirect()->intended('ordershoes')->with($message);
             }
+        } else {
+            $message = [
+                'type-message' => 'error',
+                'message' => 'Email / Password anda salah !'
+            ];
+
+            return redirect()->back()->with($message);
         }
     }
 
@@ -61,7 +72,12 @@ class SessionController extends Controller
 
         User::create($validation);
 
-        return redirect()->route("login");
+        $message = [
+            "type-message" => "success",
+            "message" => "Anda Berhasil Membuat Akun <br><b>Silahkan Login</b>"
+        ];
+
+        return redirect()->route("login")->with($message);
     }
 
     function dashboard()
@@ -71,9 +87,16 @@ class SessionController extends Controller
 
     function logout()
     {
+        $user = Auth::user();
+
         Auth::logout();
 
-        return redirect()->route("login");
+        $message = [
+            "type-message" => "success",
+            "message" => "Sampai Jumpa lagi, <b>$user->name</b>"
+        ];
+
+        return redirect()->route("login")->with($message);
     }
 
 
@@ -81,7 +104,14 @@ class SessionController extends Controller
     function completeProfile()
     {
         $user = Auth::user();
-        return view('auth.account-profile.desc-account', compact('user'));
+
+        if ($user->role == 'admin' || $user->role == 'driver') {
+            return view('auth.account-profile.backend-desc-account', compact('user'));
+        }
+
+        if ($user->role == 'customer') {
+            return view('auth.account-profile.desc-account', compact('user'));
+        }
     }
 
     function storeProfile(Request $request)
@@ -91,8 +121,8 @@ class SessionController extends Controller
         $validation = $request->validate([
             'email'    => 'required',
             'name'     => 'required',
-            'no_hp'    => 'numeric',
-            'address'  => '',
+            'no_hp'    => 'nullable',
+            'address'  => 'nullable',
             'avatar'    => 'image|mimes:jpeg,png,jpg'
         ]);
 
@@ -118,14 +148,20 @@ class SessionController extends Controller
 
         $user->update($validation);
 
+        $userName = Auth::user();
+        $message = [
+            "type-message" => "success",
+            "message" => "Berhasil Mengupdate Akun <b>$userName->name</b>"
+        ];
+
         if (Auth::user()->role == 'customer') {
-            return redirect()->route('view.cart')->with('success', 'Berhasil Cuy');
+            return redirect()->route('view.cart')->with($message);
         }
         if (Auth::user()->role == 'admin') {
-            return redirect()->route('page.dashboard')->with('success', 'Berhasil Cuy');
+            return redirect()->route('page.dashboard')->with($message);
         }
         if (Auth::user()->role == 'driver') {
-            return redirect()->route('ordershoes.view')->with('success', 'Berhasil Cuy');
+            return redirect()->route('ordershoes.view')->with($message);
         }
     }
 }
