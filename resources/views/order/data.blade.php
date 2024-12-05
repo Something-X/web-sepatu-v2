@@ -139,9 +139,18 @@
             </div>
         </section>
     @else
+    <div class="flex w-full rounded-full border-2 border-green-800 overflow-hidden max-w-md mx-auto font-[sans-serif]">
+        <input type="text" id="searchShoes" placeholder="Cari Sepatu..." class="w-full outline-none rounded-l-full bg-white text-sm px-5 py-3 focus:border-green-800"/>
+        <button type='button' class="flex items-center justify-center bg-green-800 hover:bg-green-900 px-6">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="18px" class="fill-white">
+                <path d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
+                </path>
+            </svg>
+        </button>
+    </div>
         <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-8 px-4 max-w-full mx-3 lg:mx-10 xl:mx-28 mt-10 mb-10 sm:mt-14 sm:mb-14 md:mt-20 md:mb-20">
             @foreach ($shoes as $see)
-                <div class="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-gray-100 bg-clip-border text-gray-700 shadow-lg">
+                <div class="shoes-card relative flex w-full max-w-[26rem] flex-col rounded-xl bg-gray-100 bg-clip-border text-gray-700 shadow-lg">
                     <div class="relative mx-4 mt-4 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
                         <img src="{{ $see->imagedetail[0]->image }}" alt="{{ $see->name }}" alt="ui/ux review check">
                         <div class="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60"></div>
@@ -233,4 +242,7 @@
         </div>
     </div>
     </footer>
+
+    <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/searching-hero.js') }}"></script>
 @endsection
