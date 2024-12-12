@@ -6,9 +6,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\TransactionController;
-
-
-
 use Illuminate\Support\Facades\Route;
 
 // Page Auth (Login / Register)
@@ -54,6 +51,7 @@ Route::group(['middleware' => 'driver'], function () {
     Route::post("status/driver/{id}", [TransactionController::class, 'deliveryStatus'])->name('delivery.status');
 });
 
+
 // Halaman Customer
 Route::group(['middleware' => 'customer'], function () {
     Route::get("order", [ShoesController::class, 'order'])->name("order.view");
@@ -69,11 +67,4 @@ Route::group(['middleware' => 'customer'], function () {
     // Checkout / Pembayaran
     Route::get("checkout", [TransactionController::class, 'checkout'])->name('checkout');
     Route::post("checkout-detail", [TransactionController::class, 'storeTransaction'])->name('checkout.detail');
-});
-
-
-
-// Cuman Testing
-Route::get("main", function () {
-    return view("layouts.main");
 });

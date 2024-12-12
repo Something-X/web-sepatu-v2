@@ -120,7 +120,7 @@ class SessionController extends Controller
     function storeProfile(Request $request)
     {
         // Validasi Input
-        // dd($request->all());p
+        // dd($request->all());
         $validation = $request->validate([
             'email'    => 'required',
             'name'     => 'required',
