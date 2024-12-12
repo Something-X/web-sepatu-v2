@@ -7,33 +7,33 @@
     </div>
     @foreach ($transaction as $see)
         <div class="flex items-center justify-center mt-8">
-            <div class="card bg-gray-200/60 w-[1130px] h-[230px] border-2 border-gray-600 shadow-lg shadow-black/20 backdrop-blur-md rounded-2xl text-center cursor-pointer transition-all duration-500 select-none font-bold text-black hover:border-black hover:scale-[1.01] active:scale-95 active:rotate-1">
+            <div class="card bg-gray-200/60 w-[1130px] h-[230px] border border-gray-600 shadow-lg shadow-black/20 backdrop-blur-md rounded-2xl text-center cursor-pointer transition-all duration-500 select-none font-bold text-black hover:border-black hover:scale-[1.01] active:scale-95 active:rotate-1">
                 @if ($see->transaction_status == 'pending')
-                    <div class="w-[1126px] h-[40px] bg-gray-400 top-0 rounded-t-xl">
+                    <div class="w-[1128px] h-[40px] bg-gray-400 top-0 rounded-t-xl">
                         <h4 class="items-center justify-center text-base font-medium pt-2">PENDING</h4>
                     </div>
                 @endif
 
                 @if ($see->transaction_status == 'accepted' && $see->delivery_status == 'pending')
-                    <div class="w-[1126px] h-[40px] bg-yellow-300 top-0 rounded-t-xl">
+                    <div class="w-[1128px] h-[40px] bg-yellow-300 top-0 rounded-t-xl">
                         <h4 class="items-center justify-center text-base font-medium pt-2">DIPROSES</h4>
                     </div>
                 @endif
 
                 @if ($see->transaction_status == 'cancelled')
-                    <div class="w-[1126px] h-[40px] bg-red-500 top-0 rounded-t-xl">
+                    <div class="w-[1128px] h-[40px] bg-red-500 top-0 rounded-t-xl">
                         <h4 class="items-center justify-center text-base font-medium pt-2">DITOLAK</h4>
                     </div>
                 @endif
 
                 @if ($see->transaction_status == 'completed' && $see->delivery_status == 'delivered')
-                    <div class="w-[1126px] h-[40px] bg-green-500 top-0 rounded-t-xl">
+                    <div class="w-[1128px] h-[40px] bg-green-500 top-0 rounded-t-xl">
                         <h4 class="items-center justify-center text-base font-medium pt-2">SELESAI</h4>
                     </div>
                 @endif
 
                 @if ($see->transaction_status == 'accepted' && $see->delivery_status == 'shipped')
-                    <div class="w-[1126px] h-[40px] bg-yellow-300 top-0 rounded-t-xl">
+                    <div class="w-[1128px] h-[40px] bg-yellow-300 top-0 rounded-t-xl">
                         <h4 class="items-center justify-center text-base font-medium pt-2">DIPROSES</h4>
                     </div>
                 @endif
