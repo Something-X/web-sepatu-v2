@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 import plugin from 'tailwindcss/plugin';
-
 export default {
     content: [
         "./resources/**/*.blade.php",
@@ -12,9 +11,9 @@ export default {
         extend: {},
     },
     plugins: [
+        plugin,
         require("flowbite/plugin")({
             datatables: true,
-            plugin,
         }),
     ],
 };

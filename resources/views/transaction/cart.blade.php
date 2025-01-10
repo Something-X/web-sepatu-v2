@@ -64,7 +64,6 @@
                                     </div>
                                 </div>
                             @endforeach
-                        </a>
                         </div>
                     </div>
 
@@ -72,15 +71,16 @@
                         <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
                             <p class="text-xl font-semibold text-gray-900 dark:text-white">Ringkasan Pesanan</p>
 
-                            <div class="space-y-4 border-b border-gray-300 pt-2 dark:border-gray-700">
+                            <div class="space-y-4">
                                 <dl class="flex items-center mb-4 justify-between gap-4">
                                     <dt class="text-base font-bold text-gray-900 dark:text-white">Total</dt>
                                     <dd class="text-base font-bold text-gray-900 dark:text-white">Rp {{ number_format(array_sum(array_map(function ($item) {return $item['price'] * $item['quantity'];}, $cart)),0,',','.') }}</dd>
                                 </dl>
-                                <a href="{{ route('checkout.index') }}" >
-                                    <button class="mt-7 px-8 z-30 py-4 bg-green-700 rounded-md text-white relative font-semibold after:-z-20 after:absolute after:h-1 after:w-1 after:bg-green-800 after:left-5 overflow-hidden after:bottom-0 after:translate-y-full after:rounded-md after:hover:scale-[300] after:hover:transition-all after:hover:duration-700 after:transition-all after:duration-700 transition-all duration-700 [text-shadow:3px_5px_2px_#0c340c;] hover:[text-shadow:2px_2px_2px_#0c340c] text-xl"> 
+                                <a href="{{ route('checkout') }}">
+                                    <button class="mt-7 px-8 z-30 py-4 bg-green-700 rounded-md text-white relative font-semibold after:-z-20 after:absolute after:h-1 after:w-1 after:bg-green-800 after:left-5 overflow-hidden after:bottom-0 after:translate-y-full after:rounded-md after:hover:scale-[300] after:hover:transition-all after:hover:duration-700 after:transition-all after:duration-700 transition-all duration-700 [text-shadow:3px_5px_2px_#0c340c;] hover:[text-shadow:2px_2px_2px_#0c340c] text-xl">
                                         Lanjutkan Pembayaran
                                     </button>
+                                </a>
                             </div>
 
                         </div>

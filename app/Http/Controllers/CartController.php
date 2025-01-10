@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shoes;
 
-use function Ramsey\Uuid\v1;
-
 class CartController extends Controller
 {
     public function addToCart(Request $request, $id)
@@ -30,6 +28,7 @@ class CartController extends Controller
                 'name' => $shoes->name,
                 'price' => $shoes->price,
                 'stock' => $shoes->stock,
+                'size' => $shoes->size,
                 'quantity' => $qty,
                 'image' => $shoes->imagedetail[0]->image
             ];
@@ -98,7 +97,11 @@ class CartController extends Controller
         return redirect()->back()->with($message);
     }
 
-    public function checkout(){
-        return view('transaction.checkout');
+    public function checkout()
+    {
+        // Mengambil keranjang dari session
+        $cart = session()->get('cart', []);
+
+        return view('transaction.checkout',  compact('cart'));
     }
 }
