@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shoes;
 
+use function Ramsey\Uuid\v1;
+
 class CartController extends Controller
 {
     public function addToCart(Request $request, $id)
@@ -94,5 +96,9 @@ class CartController extends Controller
         ];
 
         return redirect()->back()->with($message);
+    }
+
+    public function checkout(){
+        return view('transaction.checkout');
     }
 }

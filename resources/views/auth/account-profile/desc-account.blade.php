@@ -3,7 +3,7 @@
 @section('title-frontend', 'ShoeCycle | Keranjang')
 
 @section('content-frontend')
-    <div class=" py-1 bg-blueGray-50">
+    {{-- <div class=" py-1 bg-blueGray-50">
         <div class="w-full lg:w-5/12 px-4 mx-auto mt-6">
             <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-3xl bg-white border-0">
                 <div class="rounded-t-3xl bg-green-800 mb-0 px-6 py-6 border-b-2">
@@ -118,7 +118,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <form action="{{ route('store.profile', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
